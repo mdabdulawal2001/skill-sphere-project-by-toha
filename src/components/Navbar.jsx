@@ -65,7 +65,7 @@ const Navbar = () => {
             <Link className="hover:bg-gray-200 px-3 py-2 rounded-md" href={"/"}>
               Home
             </Link>
-            <Link className="hover:bg-gray-200 px-3 py-2 rounded-md" href={"/"}>
+            <Link className="hover:bg-gray-200 px-3 py-2 rounded-md" href={"/app/allCoursesPage"}>
               All Courses
             </Link>
             <Link className="hover:bg-gray-200 px-3 py-2 rounded-md" href={"/"}>
