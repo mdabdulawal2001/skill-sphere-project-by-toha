@@ -11,14 +11,27 @@ import {
 } from "@heroui/react";
 
 import React from "react";
-import { CgCheck } from "react-icons/cg";
 import { FaGoogle } from "react-icons/fa";
 import Link from "next/link";
+import { useForm, Controller } from "react-hook-form";
+import { authClient } from "@/lib/auth-client";
 
 const RegisterPage = () => {
+  const { control, handleSubmit } = useForm();
+
+  const handleRegisterFunc = async (data) => {
+    const {email, name, photo, password} = data;
+    const {data: res, error} = await authClient.signUp.email({
+    name: name, // required
+    email: email, // required
+    password: password, // required
+    image: photo,
+    callbackURL: "/",
+    }) 
+  };
+
   return (
     <div className="my-10 md:my-16 min-h-screen flex items-center justify-center px-4">
-
       {/* CARD */}
       <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
 
@@ -26,49 +39,98 @@ const RegisterPage = () => {
         <h1 className="text-3xl font-bold text-center">
           Registration ✨
         </h1>
+
         <p className="text-center text-gray-500 mt-2 mb-6">
           Create your SkillSphere account
         </p>
 
         {/* FORM */}
-        <Form className="flex flex-col gap-5">
+        <Form
+          onSubmit={handleSubmit(handleRegisterFunc)}
+          className="flex flex-col gap-5"
+        >
 
           {/* NAME */}
-          <TextField isRequired name="name" type="text">
-            <Label>Name</Label>
-            <Input placeholder="Enter your name" />
-            <FieldError />
-          </TextField>
+          <Controller
+            name="name"
+            control={control}
+            render={({ field }) => (
+              <TextField isRequired>
+                <Label>Name</Label>
+                <Input {...field} placeholder="Enter your name" />
+                <FieldError />
+              </TextField>
+            )}
+          />
 
           {/* EMAIL */}
-          <TextField isRequired name="email" type="email">
-            <Label>Email</Label>
-            <Input placeholder="Enter your email" />
-            <FieldError />
-          </TextField>
+          <Controller
+            name="email"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                isRequired
+                validate={(value) => {
+                  if (
+                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
+                  ) {
+                    return "Please enter a valid email address";
+                  }
+                  return null;
+                }}
+              >
+                <Label>Email</Label>
+                <Input {...field} placeholder="Enter your email" />
+                <FieldError />
+              </TextField>
+            )}
+          />
 
           {/* PHOTO URL */}
-          <TextField isRequired name="photo" type="text">
-            <Label>Photo URL</Label>
-            <Input placeholder="Paste your image link" />
-            <Description>
-              Your profile picture will be shown publicly
-            </Description>
-            <FieldError />
-          </TextField>
+          <Controller
+            name="photo"
+            control={control}
+            render={({ field }) => (
+              <TextField isRequired>
+                <Label>Photo URL</Label>
+                <Input {...field} placeholder="Paste your image link" />
+                <Description>
+                  Your profile picture will be shown publicly
+                </Description>
+                <FieldError />
+              </TextField>
+            )}
+          />
 
           {/* PASSWORD */}
-          <TextField isRequired name="password" type="password">
-            <Label>Password</Label>
-            <Input placeholder="Create a strong password" />
-            <Description>
-              Minimum 8 characters recommended
-            </Description>
-            <FieldError />
-          </TextField>
+          <Controller
+            name="password"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                isRequired
+                validate={(value) => {
+                  if (value.length < 8) {
+                    return "Minimum 8 characters required";
+                  }
+                  if (!/[A-Z]/.test(value)) {
+                    return "At least 1 uppercase letter required";
+                  }
+                  if (!/[0-9]/.test(value)) {
+                    return "At least 1 number required";
+                  }
+                  return null;
+                }}
+              >
+                <Label>Password</Label>
+                <Input {...field} type="password" placeholder="Enter password" />
+                <FieldError />
+              </TextField>
+            )}
+          />
 
           {/* REGISTER BUTTON */}
-          <Button className="w-full bg-blue-500 text-white">
+          <Button type="submit" className="w-full bg-blue-500 text-white">
             Register
           </Button>
         </Form>
@@ -89,7 +151,7 @@ const RegisterPage = () => {
         {/* LOGIN LINK */}
         <p className="text-center text-sm text-gray-500 mt-6">
           Already have an account?{" "}
-          <Link href="/loginPage" className="text-blue-500 font-medium">
+          <Link href={`/loginPage`} className="text-blue-500 font-medium">
             Login
           </Link>
         </p>
