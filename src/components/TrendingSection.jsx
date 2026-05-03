@@ -5,8 +5,8 @@ const TrendingSection = async () => {
   const res = await fetch("http://localhost:3000/data.json", {
     cache: "no-store",
   });
-
-  const courses = await res.json();
+  const data = await res.json();
+  const courses = data.courses;
 
   // 🔥 Trending (simple logic: first 4)
   const trending = courses.slice(0, 4);
@@ -17,7 +17,7 @@ const TrendingSection = async () => {
           🚀 Trending Courses
         </h2>
 
-        <div className="grid md:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
           {trending.map((course) => (
             <div
               key={course.id}

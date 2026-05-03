@@ -1,4 +1,6 @@
 import BannerSection from "@/components/BannerSection";
+import Instructors from "@/components/Instructors";
+import LearningTips from "@/components/LearningTips";
 import TopRatedCourses from "@/components/TopRatedCourses";
 import TrendingSection from "@/components/TrendingSection";
 import Image from "next/image";
@@ -11,6 +13,8 @@ export default function Home() {
       <BannerSection></BannerSection>
       <TopRatedCourses></TopRatedCourses>
       <TrendingSection></TrendingSection>
+      <LearningTips></LearningTips>
+      <Instructors></Instructors>
     </div>
   );
 }

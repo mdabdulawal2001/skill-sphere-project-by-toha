@@ -4,7 +4,9 @@ import { FcRating } from 'react-icons/fc';
 
 const TopRatedCourses = async () => {
         const res = await fetch('http://localhost:3000/data.json', { cache: "no-store", })
-    const courses = await res.json();
+    const data = await res.json();
+
+    const courses = data.courses;
    
     console.log(courses);
       // top 3 highest rating
@@ -19,7 +21,7 @@ const TopRatedCourses = async () => {
         🔥 Popular Courses
       </h2>
 
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {topCourses.map((course) => (
           <div
             key={course.id}
