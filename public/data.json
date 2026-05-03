@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "title": "Complete Web Development Bootcamp",
+    "instructor": "John Doe",
+    "duration": "20 hours",
+    "rating": 4.8,
+    "level": "Beginner",
+    "description": "Learn full-stack web development from scratch.",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    "category": "Development"
+  },
+  {
+    "id": 2,
+    "title": "UI/UX Design Mastery",
+    "instructor": "Jane Smith",
+    "duration": "15 hours",
+    "rating": 4.9,
+    "level": "Intermediate",
+    "description": "Design modern and user-friendly interfaces.",
+    "image": "https://images.unsplash.com/photo-1559027615-cd4628902d4a",
+    "category": "Design"
+  },
+  {
+    "id": 3,
+    "title": "Digital Marketing Essentials",
+    "instructor": "Michael Brown",
+    "duration": "12 hours",
+    "rating": 4.7,
+    "level": "Beginner",
+    "description": "Learn SEO, ads, and online marketing strategies.",
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+    "category": "Marketing"
+  },
+  {
+    "id": 4,
+    "title": "Advanced JavaScript Concepts",
+    "instructor": "David Lee",
+    "duration": "18 hours",
+    "rating": 4.9,
+    "level": "Advanced",
+    "description": "Master closures, async JS, and deep concepts.",
+    "image": "https://images.unsplash.com/photo-1518779578993-ec3579fee39f",
+    "category": "Development"
+  },
+  {
+    "id": 5,
+    "title": "Graphic Design with Photoshop",
+    "instructor": "Emily Clark",
+    "duration": "10 hours",
+    "rating": 4.6,
+    "level": "Beginner",
+    "description": "Create stunning visuals using Photoshop.",
+    "image": "https://images.unsplash.com/photo-1507209696998-3c532be9b2b5",
+    "category": "Design"
+  },
+  {
+    "id": 6,
+    "title": "Freelancing & Career Growth",
+    "instructor": "Chris Evans",
+    "duration": "8 hours",
+    "rating": 4.8,
+    "level": "Beginner",
+    "description": "Learn how to start freelancing and grow your career.",
+    "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+    "category": "Career"
+  }
+]
