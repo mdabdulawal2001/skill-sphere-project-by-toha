@@ -8,6 +8,7 @@ import Image from "next/image";
 import NavLink from "./NavLink";
 import logo from "@/assets/logo.png";
 
+
 const Navbar = () => {
   // closing drawer after clicking sidebar link
   const closeDrawer = () => {
@@ -90,7 +91,7 @@ const Navbar = () => {
         {/* navbar end */}
         <div className="navbar-end">
           <div className="flex gap-3">
-          <button className="btn">Login</button>
+          <Link href={'/LoginPage'}><button className="btn">Login</button></Link>
           <button className="btn">Register</button>
           </div>
           <div className="hidden">
