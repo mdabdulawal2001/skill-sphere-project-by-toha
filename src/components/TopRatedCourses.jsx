@@ -25,7 +25,7 @@ const TopRatedCourses = async () => {
         {topCourses.map((course) => (
           <div
             key={course.id}
-            className="border rounded-xl shadow hover:shadow-lg transition overflow-hidden"
+            className="border rounded-xl shadow hover:shadow-lg hover:scale-105 transition overflow-hidden"
           >
             {/* IMAGE */}
             <Image

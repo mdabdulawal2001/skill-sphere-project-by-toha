@@ -21,7 +21,7 @@ const TrendingSection = async () => {
           {trending.map((course) => (
             <div
               key={course.id}
-              className="border rounded-lg p-3 shadow hover:shadow-md transition"
+              className="border rounded-lg p-3 shadow hover:shadow-lg hover:scale-105 transition"
             >
               {/* IMAGE */}
             <Image

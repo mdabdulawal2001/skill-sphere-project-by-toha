@@ -13,7 +13,7 @@ const allCoursesPage = async () => {
 
   return (
     <div>
-      <div className="max-w-7xl mx-auto px-4 py-10">
+      <div className="max-w-7xl mx-auto px-4 py-10 my-6 md:my-10">
         {/* HEADER */}
         <h1 className="text-3xl md:text-4xl font-bold mb-8">📚 All Courses</h1>
 
@@ -22,7 +22,7 @@ const allCoursesPage = async () => {
           {courses.map((course) => (
             <div
               key={course.id}
-              className="border rounded-xl shadow hover:shadow-xl transition overflow-hidden bg-white"
+              className="my-3 border rounded-xl shadow hover:shadow-xl hover:scale-105 transition overflow-hidden bg-white"
             >
               {/* IMAGE */}
               <div className="relative w-full h-48">
@@ -45,9 +45,9 @@ const allCoursesPage = async () => {
                   <span
                     className={`px-2 py-1 rounded text-xs font-medium ${
                       course.level === "Advanced"
-                        ? "bg-green-100 text-green-600"
+                        ? "bg-green-200 text-green-600"
                         : course.level === "Intermediate"
-                        ? "bg-blue-100 text-blue-600"
+                        ? "bg-[#f8daef] text-[#f055f8]"
                         : "bg-yellow-100 text-yellow-600"
                     }`}
                   >
@@ -72,7 +72,7 @@ const allCoursesPage = async () => {
 
                 {/* BUTTON */}
                 <Link
-                  href={`/courses/${course.id}`}
+                  href={`/allCoursesPage/${course.id}`}
                   className="mt-4 inline-block w-full text-center bg-blue-500 hover:bg-blue-600 text-white py-2 rounded"
                 >
                   View Details

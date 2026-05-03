@@ -21,7 +21,7 @@ const Instructors = async () => {
           {instructors.map((ins) => (
             <div
               key={ins.id}
-              className="border rounded-xl p-5 shadow hover:shadow-xl transition bg-white text-center"
+              className="border rounded-xl p-5 shadow hover:shadow-xl transition hover:scale-105 bg-white text-center"
             >
               {/* IMAGE */}
               <div className="flex justify-center">
