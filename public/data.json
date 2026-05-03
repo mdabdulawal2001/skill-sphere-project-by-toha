@@ -18,7 +18,7 @@
     "rating": 4.9,
     "level": "Intermediate",
     "description": "Design modern and user-friendly interfaces.",
-    "image": "https://images.unsplash.com/photo-1559027615-cd4628902d4a",
+    "image":"https://www.creativeitinstitute.com/images/course/course_1768474919.jpg",
     "category": "Design"
   },
   {
@@ -40,7 +40,7 @@
     "rating": 4.9,
     "level": "Advanced",
     "description": "Master closures, async JS, and deep concepts.",
-    "image": "https://images.unsplash.com/photo-1518779578993-ec3579fee39f",
+    "image": "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20201028214738/7-JavaScript-Concepts-That-Every-Developer-Must-Know.jpg",
     "category": "Development"
   },
   {

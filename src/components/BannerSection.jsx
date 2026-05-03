@@ -44,7 +44,7 @@ const BannerSection = () => {
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <div
-              className="h-[400px] flex items-center justify-center text-white text-center relative"
+              className="h-100 flex items-center justify-center text-white text-center relative"
               style={{
                 backgroundImage: `url(${slide.image})`,
                 backgroundSize: "cover",
