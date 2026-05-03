@@ -9,6 +9,7 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
+import Link from "next/link";
 
 import React from "react";
 import { CgCheck } from "react-icons/cg";
@@ -21,7 +22,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="my-10 md:my-16 min-h-screen flex items-center justify-center  px-4">
+    <div className="my-10 md:my-16 min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
 
         {/* TITLE */}
@@ -119,9 +120,9 @@ const LoginPage = () => {
         {/* FOOTER LINK */}
         <p className="text-center text-sm text-gray-500 mt-6">
           Don’t have an account?{" "}
-          <span className="text-blue-500 cursor-pointer">
+          <Link href={`/registerPage`} className="text-blue-500 cursor-pointer">
             Register
-          </span>
+          </Link>
         </p>
       </div>
     </div>

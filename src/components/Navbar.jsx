@@ -91,8 +91,8 @@ const Navbar = () => {
         {/* navbar end */}
         <div className="navbar-end">
           <div className="flex gap-3">
-          <Link href={'/LoginPage'}><button className="btn">Login</button></Link>
-          <button className="btn">Register</button>
+          <Link href={`/loginPage`}><button className="btn">Login</button></Link>
+          <Link href={`/registerPage`}><button className="btn">Register</button></Link>
           </div>
           <div className="hidden">
             <button>Logout</button>
