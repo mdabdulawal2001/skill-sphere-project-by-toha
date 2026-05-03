@@ -5,7 +5,7 @@ import logo from "@/assets/logo.png";
 
 const Footer = () => {
   return (
-    <div className="">
+    <div className="w-11/12 mx-auto">
       <footer className="footer sm:footer-horizontal bg-base-300 text-base-content p-10">
         <nav>
           <div>
