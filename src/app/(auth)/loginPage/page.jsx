@@ -29,7 +29,7 @@ const LoginPage = () => {
         callbackURL: "/",
         }) 
 
-        // console.log({res, error});
+        console.log({res, error});
         
   };
 
