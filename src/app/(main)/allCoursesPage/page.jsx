@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -41,6 +40,12 @@ const allCoursesPage = () => {
             />
           </div>
         </div>
+        {/* not found */}
+                {filteredCourses.length === 0 && (
+        <p className="text-center mt-10 text-gray-500">
+          No courses found
+        </p>
+      )}
 
         {/* GRID */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -80,6 +85,7 @@ const allCoursesPage = () => {
           ))}
         </div>
       </div>
+
     </div>
   );
 };

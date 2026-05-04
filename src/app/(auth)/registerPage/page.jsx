@@ -67,7 +67,7 @@ const RegisterPage = () => {
             render={({ field }) => (
               <TextField isRequired>
                 <Label>Name</Label>
-                <Input {...field} placeholder="Enter your name" />
+                <Input className="w-full" {...field} placeholder="Enter your name" />
                 <FieldError />
               </TextField>
             )}
@@ -90,7 +90,7 @@ const RegisterPage = () => {
                 }}
               >
                 <Label>Email</Label>
-                <Input {...field} placeholder="Enter your email" />
+                <Input className="w-full" {...field} placeholder="Enter your email" />
                 <FieldError />
               </TextField>
             )}
@@ -103,7 +103,7 @@ const RegisterPage = () => {
             render={({ field }) => (
               <TextField isRequired>
                 <Label>Photo URL</Label>
-                <Input {...field} placeholder="Paste your image link" />
+                <Input className="w-full" {...field} placeholder="Paste your image link" />
                 <Description>
                   Your profile picture will be shown publicly
                 </Description>
@@ -133,7 +133,7 @@ const RegisterPage = () => {
                 }}
               >
                 <Label>Password</Label>
-                <Input {...field} type="password" placeholder="Enter password" />
+                <Input className="w-full" {...field} type="password" placeholder="Enter password" />
                 <FieldError />
               </TextField>
             )}

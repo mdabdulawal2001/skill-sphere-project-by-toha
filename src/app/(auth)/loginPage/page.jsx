@@ -44,7 +44,7 @@ const LoginPage = () => {
 
         {/* TITLE */}
         <h1 className="text-2xl font-bold text-center mb-2">
-          Welcome Back 👋
+          Welcome Back 
         </h1>
 
         <p className="text-center text-gray-500 mb-6">
@@ -74,7 +74,7 @@ const LoginPage = () => {
                 }}
               >
                 <Label>Email</Label>
-                <Input {...field} placeholder="Enter your email" />
+                <Input className="w-full" {...field} placeholder="Enter your email" />
                 <FieldError />
               </TextField>
             )}
@@ -101,7 +101,7 @@ const LoginPage = () => {
                 }}
               >
                 <Label>Password</Label>
-                <Input {...field} type="password" placeholder="Enter password" />
+                <Input className="w-full" {...field} type="password" placeholder="Enter password" />
                 <FieldError />
               </TextField>
             )}
@@ -144,7 +144,7 @@ const LoginPage = () => {
         {/* FOOTER */}
         <p className="text-center text-sm text-gray-500 mt-6">
           Don’t have an account?{" "}
-          <Link href="/register" className="text-blue-500 cursor-pointer">
+          <Link href="/registerPage" className="text-blue-500 cursor-pointer">
             Register
           </Link>
         </p>
