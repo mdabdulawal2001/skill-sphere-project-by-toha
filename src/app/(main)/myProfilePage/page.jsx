@@ -1,14 +1,17 @@
+'use client'
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { authClient } from "@/lib/auth-client";
+import { Avatar } from "@heroui/react";
+import UpdateUser from "@/components/UpdateUser";
+import { BiEdit } from "react-icons/bi";
 
 const myProfilePage = () => {
-  const user = {
-    name: "John Doe",
-    email: "john@example.com",
-    image: "https://i.pravatar.cc/150?img=12",
-  };
-
+  const {data: session} = authClient.useSession();
+   const user = session?.user;
+    console.log(user);
+    
   return (
     <div>
       <div className="max-w-5xl mx-auto px-4 py-10">
@@ -16,31 +19,30 @@ const myProfilePage = () => {
         <h1 className="text-3xl md:text-4xl font-bold mb-8">👤 My Profile</h1>
 
         {/* PROFILE CARD */}
-        <div className="bg-white shadow rounded-xl p-6 md:flex items-center gap-8">
+        <div className="flex justify-between items-center bg-white shadow rounded-xl p-6">
           {/* IMAGE */}
-          <div className="flex justify-center">
-            <Image
-              src={user.image}
-              alt="profile"
-              width={120}
-              height={120}
-              className="rounded-full border-4 border-blue-500"
-            />
+         <div className=" md:flex items-center gap-8">
+           <div className="flex justify-center">
+            <Avatar className="w-20 h-20">
+                    <Avatar.Image alt="John Doe" src={user?.image} referrerPolicy="no-referrer" />
+                    <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+                  </Avatar>
           </div>
 
           {/* INFO */}
           <div className="mt-6 md:mt-0 flex-1 flex flex-col items-center md:flex-none md:items-start">
-            <h2 className="text-2xl font-semibold">{user.name}</h2>
-            <p className="text-gray-500 mt-1">{user.email}</p>
+            <h2 className="text-2xl font-semibold">{user?.name}</h2>
+            <p className="text-gray-500 mt-1">{user?.email}</p>
 
             {/* BUTTON */}
-            <Link
-              href="/profile/update"
-              className="inline-block mt-4 px-5 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded"
-            >
-              Update Profile
-            </Link>
+              <UpdateUser></UpdateUser>
           </div>
+         </div>
+            <div className="hidden md:block">
+              <span>
+                <BiEdit size={30} className="text-gray-600 hover:text-blue-500 transition duration-300 cursor-pointer"></BiEdit>
+              </span>
+            </div>
         </div>
 
         {/* EXTRA SECTION */}
