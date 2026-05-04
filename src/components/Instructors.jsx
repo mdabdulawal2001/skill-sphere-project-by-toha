@@ -7,7 +7,7 @@ const Instructors = async () => {
   });
   const data = await res.json();
   const instructors = data;
-  console.log(instructors);
+  // console.log(instructors);
 
   return (
     <div className="mb-8 md:mb-10">
