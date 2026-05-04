@@ -2,11 +2,11 @@ import Image from "next/image";
 import React from "react";
 
 const TrendingSection = async () => {
-  const res = await fetch("http://localhost:3000/data.json", {
+  const res = await fetch("https://skill-sphere-server-0c85.onrender.com/courses", {
     cache: "no-store",
   });
   const data = await res.json();
-  const courses = data.courses;
+  const courses = data;
 
   // 🔥 Trending (simple logic: first 4)
   const trending = courses.slice(0, 4);
