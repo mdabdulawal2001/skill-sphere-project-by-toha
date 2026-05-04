@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useState } from "react";
-import { Button } from "@heroui/react";
+import { Avatar, Button } from "@heroui/react";
 import Link from "next/link";
 import { CgMenu } from "react-icons/cg";
 import Image from "next/image";
@@ -14,6 +14,11 @@ const Navbar = () => {
   // closing drawer after clicking sidebar link
   const {data: session} = authClient.useSession();
   const user = session?.user;
+  console.log(user);
+  
+  const handleSignOut = async () => {
+    await authClient.signOut();
+  }
   
   
   
@@ -96,17 +101,22 @@ const Navbar = () => {
         </div>
         {/* navbar end */}
         <div className="navbar-end">
-          <div className="flex gap-3">
+         { !user && <div className="flex gap-3">
           <Link href={`/loginPage`}><button className="btn">Login</button></Link>
           <Link href={`/registerPage`}><button className="btn">Register</button></Link>
-          </div>
-          <div className="hidden">
-            <button>Logout</button>
-          </div>
+          </div>}
+          
           {/* avatar if logged in */}
-          <div>
+          { user && <div className="flex gap-2">
+            <Avatar>
+        <Avatar.Image alt="John Doe" src={user?.image} referrerPolicy="no-referrer" />
+        <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+      </Avatar>
 
+      <div className="">
+            <Link href={`/loginPage`}><Button onClick={handleSignOut} variant="danger" className="">Logout</Button></Link>
           </div>
+          </div>}
         </div>
       </div>
     </div>

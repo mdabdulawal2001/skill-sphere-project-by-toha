@@ -135,10 +135,10 @@ const LoginPage = () => {
             Login with Google
           </button>
 
-          <button className="flex items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-100 transition">
+          {/* <button className="flex items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-100 transition">
             <FaGithub />
             Login with GitHub
-          </button>
+          </button> */}
         </div>
 
         {/* FOOTER */}
