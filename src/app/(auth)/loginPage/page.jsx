@@ -13,14 +13,29 @@ import {
 import Link from "next/link";
 import { useForm, Controller } from "react-hook-form";
 import { FaGoogle, FaGithub } from "react-icons/fa";
+import { authClient } from "@/lib/auth-client";
 
 const LoginPage = () => {
   const { control, handleSubmit } = useForm();
 
-  const handleLoginFunc = (data) => {
+  const handleLoginFunc = async (data) => {
     const {email, password} = data;
     console.log(email, password);
+
+      const {data: res, error} = await authClient.signIn.email({
+        email: email, // required
+        password: password, // required
+        callbackURL: "/",
+        }) 
+        console.log({res, error});
+        
   };
+
+  const handleGoogleSignIn = async () => {
+     const data = await authClient.signIn.social({
+    provider: "google",
+  });
+  }
 
   return (
     <div className="my-10 md:my-16 min-h-screen flex items-center justify-center px-4">
@@ -115,7 +130,7 @@ const LoginPage = () => {
         {/* SOCIAL LOGIN */}
         <div className="flex flex-col gap-3">
 
-          <button className="flex items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-100 transition">
+          <button onClick={handleGoogleSignIn} className="flex items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-100 transition">
             <FaGoogle className="text-red-500" />
             Login with Google
           </button>

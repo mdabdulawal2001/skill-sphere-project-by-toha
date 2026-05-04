@@ -7,10 +7,16 @@ import { CgMenu } from "react-icons/cg";
 import Image from "next/image";
 import NavLink from "./NavLink";
 import logo from "@/assets/logo.png";
+import { authClient } from "@/lib/auth-client";
 
 
 const Navbar = () => {
   // closing drawer after clicking sidebar link
+  const {data: session} = authClient.useSession();
+  const user = session?.user;
+  
+  
+  
   const closeDrawer = () => {
     const drawer = document.getElementById("my-drawer-1");
     if (drawer) {

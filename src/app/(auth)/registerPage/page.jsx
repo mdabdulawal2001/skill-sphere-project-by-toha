@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Button,
   Description,
@@ -15,20 +14,31 @@ import { FaGoogle } from "react-icons/fa";
 import Link from "next/link";
 import { useForm, Controller } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const RegisterPage = () => {
+  const router = useRouter()
   const { control, handleSubmit } = useForm();
 
   const handleRegisterFunc = async (data) => {
     const {email, name, photo, password} = data;
+
     const {data: res, error} = await authClient.signUp.email({
     name: name, // required
     email: email, // required
     password: password, // required
     image: photo,
-    callbackURL: "/",
     }) 
+    if(!error){
+      router.push("/loginPage")
+    }
   };
+
+    const handleGoogleSignIn = async () => {
+       const data = await authClient.signIn.social({
+      provider: "google",
+    });
+    }
 
   return (
     <div className="my-10 md:my-16 min-h-screen flex items-center justify-center px-4">
@@ -143,7 +153,7 @@ const RegisterPage = () => {
         </div>
 
         {/* GOOGLE LOGIN */}
-        <button className="w-full flex items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-100 transition">
+        <button onClick={handleGoogleSignIn} className="w-full flex items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-100 transition">
           <FaGoogle className="text-red-500" />
           Continue with Google
         </button>
