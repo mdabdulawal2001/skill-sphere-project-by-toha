@@ -3,13 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 const allCoursesPage = async () => {
-  const res = await fetch("http://localhost:3000/data.json", {
+  const res = await fetch("https://skill-sphere-server-0c85.onrender.com/courses", {
     cache: "no-store",
   });
   const data = await res.json();
-  const courses = data.courses;
+  const courses = data;
 
-  const courseCategory = ["Beginner", "Intermediate", "Advanced"];
 
   return (
     <div>

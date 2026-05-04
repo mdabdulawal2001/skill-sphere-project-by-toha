@@ -1,4 +1,5 @@
 import BannerSection from "@/components/BannerSection";
+import Category from "@/components/Category";
 import Instructors from "@/components/Instructors";
 import LearningTips from "@/components/LearningTips";
 import TopRatedCourses from "@/components/TopRatedCourses";
@@ -15,6 +16,8 @@ export default function Home() {
       <TrendingSection></TrendingSection>
       <LearningTips></LearningTips>
       <Instructors></Instructors>
+      <Category></Category>
     </div>
+
   );
 }

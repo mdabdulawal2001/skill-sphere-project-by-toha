@@ -2,12 +2,11 @@ import Image from "next/image";
 import React from "react";
 
 const Instructors = async () => {
-  const res = await fetch("http://localhost:3000/data.json", {
+  const res = await fetch("https://skill-sphere-server-0c85.onrender.com/instructors", {
     cache: "no-store",
   });
   const data = await res.json();
-
-  const instructors = data.instructors;
+  const instructors = data;
   console.log(instructors);
 
   return (
