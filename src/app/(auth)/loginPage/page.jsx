@@ -14,22 +14,55 @@ import Link from "next/link";
 import { useForm, Controller } from "react-hook-form";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
   const { control, handleSubmit } = useForm();
 
-  const handleLoginFunc = async (data) => {
-    const {email, password} = data;
-    console.log(email, password);
+  // const handleLoginFunc = async (data) => {
+  //   const {email, password} = data;
+  //   console.log(email, password);
 
-      const {data: res, error} = await authClient.signIn.email({
-        email: email, // required
-        password: password, // required
-        callbackURL: "/",
-        }) 
-        console.log({res, error});
+  //     const {data: res, error} = await authClient.signIn.email({
+  //       email: email, // required
+  //       password: password, // required
+  //       callbackURL: "/",
+  //       }) 
+
+  //       // console.log({res, error});
+  //         if (error) {
+  //     toast.error(error.message || "Login failed ❌");
+  //     return;
+  //   }
         
-  };
+  // };
+
+  const handleLoginFunc = async (data) => {
+  const { email, password } = data;
+
+  const loadingToast = toast.loading("Logging in...");
+
+  try {
+    const { data: res, error } = await authClient.signIn.email({
+      email,
+      password,
+      callbackURL: "/",
+    });
+
+    toast.dismiss(loadingToast);
+
+    if (error) {
+      toast.error(error.message || "Login failed ❌");
+      return;
+    }
+
+    toast.success("Login successful");
+
+  } catch (err) {
+    toast.dismiss(loadingToast);
+    toast.error(err?.message || "Something went wrong ❌");
+  }
+};
 
   const handleGoogleSignIn = async () => {
      const data = await authClient.signIn.social({

@@ -32,6 +32,7 @@ const RegisterPage = () => {
     if(!error){
       router.push("/loginPage")
     }
+    
   };
 
     const handleGoogleSignIn = async () => {
