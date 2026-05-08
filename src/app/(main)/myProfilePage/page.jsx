@@ -7,7 +7,7 @@ import { Avatar } from "@heroui/react";
 import UpdateUser from "@/components/UpdateUser";
 import { BiEdit } from "react-icons/bi";
 
-const myProfilePage = () => {
+const MyProfilePage = () => {
   const {data: session} = authClient.useSession();
    const user = session?.user;
     console.log(user);
@@ -67,4 +67,4 @@ const myProfilePage = () => {
   );
 };
 
-export default myProfilePage;
+export default MyProfilePage;

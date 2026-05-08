@@ -20,45 +20,42 @@ const LoginPage = () => {
   const { control, handleSubmit } = useForm();
 
   const handleLoginFunc = async (data) => {
-    const {email, password} = data;
-    console.log(email, password);
+  const { email, password } = data;
 
-      const {data: res, error} = await authClient.signIn.email({
-        email: email, // required
-        password: password, // required
-        callbackURL: "/",
-        }) 
+  // loading toast
+  const loadingToast = toast.loading("Logging in...");
 
-        console.log({res, error});
-        
-  };
+  try {
+    
+    const { data: res, error } = await authClient.signIn.email({
+      email,
+      password,
+      callbackURL: "/",
+    });
 
-//   const handleLoginFunc = async (data) => {
-//   const { email, password } = data;
+    console.log({ res, error });
 
-//   const loadingToast = toast.loading("Logging in...");
+    // remove loading toast
+    toast.dismiss(loadingToast);
 
-//   try {
-//     const { data: res, error } = await authClient.signIn.email({
-//       email,
-//       password,
-//       callbackURL: "/",
-//     });
+    // error handling
+    if (error) {
+      toast.error(error.message || "Login failed ❌");
+      return;
+    }
 
-//     toast.dismiss(loadingToast);
+    // success
+    toast.success("Login successful 🎉");
 
-//     if (error) {
-//       toast.error(error.message || "Login failed ❌");
-//       return;
-//     }
+  } catch (err) {
 
-//     toast.success("Login successful");
+    toast.dismiss(loadingToast);
 
-//   } catch (err) {
-//     toast.dismiss(loadingToast);
-//     toast.error(err?.message || "Something went wrong ❌");
-//   }
-// };
+    console.log(err);
+
+    toast.error("Something went wrong ❌");
+  }
+};
 
   const handleGoogleSignIn = async () => {
      const data = await authClient.signIn.social({

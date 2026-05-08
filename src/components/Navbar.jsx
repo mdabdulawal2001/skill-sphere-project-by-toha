@@ -8,20 +8,20 @@ import Image from "next/image";
 import NavLink from "./NavLink";
 import logo from "@/assets/logo.png";
 import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 
 
 const Navbar = () => {
-  // closing drawer after clicking sidebar link
   const {data: session} = authClient.useSession();
   const user = session?.user;
   console.log(user);
   
   const handleSignOut = async () => {
     await authClient.signOut();
+    toast.success("Logout Successful")
   }
   
-  
-  
+  // closing drawer after clicking sidebar link
   const closeDrawer = () => {
     const drawer = document.getElementById("my-drawer-1");
     if (drawer) {

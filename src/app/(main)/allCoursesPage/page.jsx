@@ -3,15 +3,21 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const allCoursesPage = () => {
+const AllCoursesPage = () => {
   const [courses, setCourses] = useState([]);
   const [search, setSearch] = useState("");
+  const [searchText, setSearchText] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [searched, setSearched] = useState(false);
 
   // fetch data
   useEffect(() => {
     fetch("https://skill-sphere-server-0c85.onrender.com/courses")
       .then((res) => res.json())
-      .then((data) => setCourses(data));
+      .then((data) => {
+        setCourses(data);
+        setLoading(false);
+      });
   }, []);
 
   // filter logic
@@ -22,30 +28,68 @@ const allCoursesPage = () => {
   return (
     <div>
       <div className="max-w-7xl mx-auto px-4 py-10 my-6 md:my-10">
-        
         {/* HEADER */}
         <div className="flex flex-col gap-6 justify-center items-center mb-6">
-          <h1 className="text-3xl md:text-4xl font-bold">
-            📚 All Courses
-          </h1>
+          <h1 className="text-3xl md:text-4xl font-bold">📚 All Courses</h1>
 
           {/* SEARCH */}
-          <div className="mb-6 w-10/12 md:w-3/12">
+          <div className="flex gap-2 mb-6 w-10/12 md:w-3/12">
             <input
               type="text"
               placeholder="Search by title..."
-              className="input input-bordered w-full"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              className="outline-none input input-bordered w-full"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  setSearch(searchText);
+                }
+              }}
             />
+            <button
+              onClick={() => {
+                setSearch(searchText);
+                setSearched(true);
+              }}
+              className="btn btn-success"
+            >
+              Search
+            </button>
           </div>
         </div>
-        {/* not found */}
-                {filteredCourses.length === 0 && (
-        <p className="text-center mt-10 text-gray-500">
-          No courses found
-        </p>
-      )}
+
+        {/* loading */}
+        {loading && (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map((item) => (
+              <div
+                key={item}
+                className="border rounded-xl p-4 shadow bg-white space-y-4"
+              >
+                {/* IMAGE SKELETON */}
+                <div className="skeleton h-48 w-full rounded-xl"></div>
+
+                {/* TITLE */}
+                <div className="skeleton h-6 w-3/4"></div>
+
+                {/* DESCRIPTION */}
+                <div className="space-y-2">
+                  <div className="skeleton h-4 w-full"></div>
+                  <div className="skeleton h-4 w-5/6"></div>
+                </div>
+
+                {/* BUTTON */}
+                <div className="skeleton h-10 w-full rounded-lg"></div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* search item not found */}
+
+        {!loading && searched && filteredCourses.length === 0 && (
+          <p className="text-center mt-10 text-gray-500">No courses found</p>
+        )}
 
         {/* GRID */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -66,9 +110,7 @@ const allCoursesPage = () => {
 
               {/* CONTENT */}
               <div className="p-4">
-                <h2 className="text-lg font-semibold">
-                  {course.title}
-                </h2>
+                <h2 className="text-lg font-semibold">{course.title}</h2>
 
                 <p className="text-sm text-gray-500 mt-1">
                   {course.description.slice(0, 100)}...
@@ -85,19 +127,15 @@ const allCoursesPage = () => {
           ))}
         </div>
       </div>
-
     </div>
   );
 };
 
-export default allCoursesPage;
-
-
+export default AllCoursesPage;
 
 // import React, { useEffect, useState } from "react";
 // import Image from "next/image";
 // import Link from "next/link";
-
 
 // const allCoursesPage = async () => {
 //   const res = await fetch("https://skill-sphere-server-0c85.onrender.com/courses", {
@@ -105,7 +143,6 @@ export default allCoursesPage;
 //   });
 //   const data = await res.json();
 //   const courses = data;
-
 
 //   return (
 //     <div>

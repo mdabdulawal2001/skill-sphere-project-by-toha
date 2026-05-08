@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const courseDetailsPage = async ({ params }) => {
+const CourseDetailsPage = async ({ params }) => {
   const { id } = await params; // ✅ correct
 
   const res = await fetch("http://localhost:3000/data.json", {
@@ -68,11 +68,21 @@ const courseDetailsPage = async ({ params }) => {
           <h2 className="text-2xl font-bold mb-4">📚 Course Curriculum</h2>
 
           <ul className="space-y-3">
-            <li className="hover:bg-[#dedcdc] border p-3 rounded">Introduction</li>
-            <li className="hover:bg-[#dedcdc] border p-3 rounded">Basics of the Topic</li>
-            <li className="hover:bg-[#dedcdc] border p-3 rounded">Intermediate Concepts</li>
-            <li className="hover:bg-[#dedcdc] border p-3 rounded">Advanced Techniques</li>
-            <li className="hover:bg-[#dedcdc] border p-3 rounded">Final Project</li>
+            <li className="hover:bg-[#dedcdc] border p-3 rounded">
+              Introduction
+            </li>
+            <li className="hover:bg-[#dedcdc] border p-3 rounded">
+              Basics of the Topic
+            </li>
+            <li className="hover:bg-[#dedcdc] border p-3 rounded">
+              Intermediate Concepts
+            </li>
+            <li className="hover:bg-[#dedcdc] border p-3 rounded">
+              Advanced Techniques
+            </li>
+            <li className="hover:bg-[#dedcdc] border p-3 rounded">
+              Final Project
+            </li>
           </ul>
         </div>
 
@@ -98,4 +108,4 @@ const courseDetailsPage = async ({ params }) => {
   );
 };
 
-export default courseDetailsPage;
+export default CourseDetailsPage;

@@ -15,41 +15,53 @@ import Link from "next/link";
 import { useForm, Controller } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
-  const router = useRouter()
+  const router = useRouter();
   const { control, handleSubmit } = useForm();
 
   const handleRegisterFunc = async (data) => {
-    const {email, name, photo, password} = data;
+    const { email, name, photo, password } = data;
 
-    const {data: res, error} = await authClient.signUp.email({
-    name: name, // required
-    email: email, // required
-    password: password, // required
-    image: photo,
-    }) 
-    if(!error){
-      router.push("/loginPage")
+    try {
+      const { data: res, error } = await authClient.signUp.email({
+        name,
+        email,
+        password,
+        image: photo,
+        autoSignIn: false,
+      });
+
+      if (error) {
+        toast.error(error.message || "Registration failed");
+        return;
+      }
+
+      await authClient.signOut();
+      toast.success("Registration Successful 🎉");
+      router.push("/loginPage");
+    } catch (err) {
+      toast.error("Something went wrong ❌");
     }
-    
   };
 
-    const handleGoogleSignIn = async () => {
-       const data = await authClient.signIn.social({
-      provider: "google",
-    });
+  const handleGoogleSignIn = async () => {
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+      });
+    } catch (error) {
+      toast.error("Google login failed");
     }
+  };
 
   return (
     <div className="my-10 md:my-16 min-h-screen flex items-center justify-center px-4">
       {/* CARD */}
       <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
-
         {/* TITLE */}
-        <h1 className="text-3xl font-bold text-center">
-          Registration ✨
-        </h1>
+        <h1 className="text-3xl font-bold text-center">Registration ✨</h1>
 
         <p className="text-center text-gray-500 mt-2 mb-6">
           Create your SkillSphere account
@@ -60,7 +72,6 @@ const RegisterPage = () => {
           onSubmit={handleSubmit(handleRegisterFunc)}
           className="flex flex-col gap-5"
         >
-
           {/* NAME */}
           <Controller
             name="name"
@@ -68,7 +79,11 @@ const RegisterPage = () => {
             render={({ field }) => (
               <TextField isRequired>
                 <Label>Name</Label>
-                <Input className="w-full" {...field} placeholder="Enter your name" />
+                <Input
+                  className="w-full"
+                  {...field}
+                  placeholder="Enter your name"
+                />
                 <FieldError />
               </TextField>
             )}
@@ -82,16 +97,18 @@ const RegisterPage = () => {
               <TextField
                 isRequired
                 validate={(value) => {
-                  if (
-                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
-                  ) {
+                  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
                     return "Please enter a valid email address";
                   }
                   return null;
                 }}
               >
                 <Label>Email</Label>
-                <Input className="w-full" {...field} placeholder="Enter your email" />
+                <Input
+                  className="w-full"
+                  {...field}
+                  placeholder="Enter your email"
+                />
                 <FieldError />
               </TextField>
             )}
@@ -104,7 +121,11 @@ const RegisterPage = () => {
             render={({ field }) => (
               <TextField isRequired>
                 <Label>Photo URL</Label>
-                <Input className="w-full" {...field} placeholder="Paste your image link" />
+                <Input
+                  className="w-full"
+                  {...field}
+                  placeholder="Paste your image link"
+                />
                 <Description>
                   Your profile picture will be shown publicly
                 </Description>
@@ -134,7 +155,12 @@ const RegisterPage = () => {
                 }}
               >
                 <Label>Password</Label>
-                <Input className="w-full" {...field} type="password" placeholder="Enter password" />
+                <Input
+                  className="w-full"
+                  {...field}
+                  type="password"
+                  placeholder="Enter password"
+                />
                 <FieldError />
               </TextField>
             )}
@@ -154,7 +180,10 @@ const RegisterPage = () => {
         </div>
 
         {/* GOOGLE LOGIN */}
-        <button onClick={handleGoogleSignIn} className="w-full flex items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-100 transition">
+        <button
+          onClick={handleGoogleSignIn}
+          className="w-full flex items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-100 transition"
+        >
           <FaGoogle className="text-red-500" />
           Continue with Google
         </button>
@@ -166,7 +195,6 @@ const RegisterPage = () => {
             Login
           </Link>
         </p>
-
       </div>
     </div>
   );
