@@ -2,14 +2,13 @@ import Image from "next/image";
 import React from "react";
 
 const CourseDetailsPage = async ({ params }) => {
-  const { id } = await params; // ✅ correct
-
-  const res = await fetch("http://localhost:3000/data.json", {
+  const { id } = await params; 
+  const res = await fetch("https://skill-sphere-server-0c85.onrender.com/courses", {
     cache: "no-store",
   });
 
   const data = await res.json();
-  const allCourses = data.courses;
+  const allCourses = data;
 
   const course = allCourses.find((c) => String(c.id) === String(id));
 

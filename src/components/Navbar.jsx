@@ -11,9 +11,10 @@ import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const { data: session } = authClient.useSession();
+  const { data: session, isPending } = authClient.useSession();
+
+  const showLoader = isPending && !session; 
   const user = session?.user;
-  console.log(user);
 
   const handleSignOut = async () => {
     await authClient.signOut();
@@ -60,7 +61,20 @@ const Navbar = () => {
         </div>
         {/* navbar end */}
         <div className="navbar-end">
-          {!user && (
+          {/* spinner while session loading */}
+          {showLoader && (
+            <div className="flex items-center justify-center mr-2">
+              <div className="relative w-10 h-10">
+                {/* outer spinning ring */}
+                <div className="absolute inset-0 rounded-full border-4 border-t-blue-500 border-r-purple-500 border-b-pink-500 border-l-transparent animate-spin"></div>
+
+                {/* inner pulse circle */}
+                <div className="absolute inset-2 rounded-full bg-blue-500 animate-pulse"></div>
+              </div>
+            </div>
+          )}
+
+          {!showLoader && !user && (
             <div className="flex gap-3">
               <Link href={`/loginPage`}>
                 <button className="btn">Login</button>
@@ -72,7 +86,7 @@ const Navbar = () => {
           )}
 
           {/* avatar if logged in */}
-          {user && (
+          {!showLoader && user && (
             <div className="flex gap-2">
               <Avatar>
                 <Avatar.Image
@@ -80,12 +94,12 @@ const Navbar = () => {
                   src={user?.image}
                   referrerPolicy="no-referrer"
                 />
-                <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+                <Avatar.Fallback>{user?.name?.charAt(0)}</Avatar.Fallback>
               </Avatar>
               {/* logout btn */}
               <div className="hidden md:block">
                 <Link href={`/loginPage`}>
-                  <Button onClick={handleSignOut} variant="danger" className="">
+                  <Button onClick={handleSignOut} variant="danger">
                     Logout
                   </Button>
                 </Link>
