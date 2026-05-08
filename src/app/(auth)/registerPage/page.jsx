@@ -9,8 +9,8 @@ import {
   TextField,
 } from "@heroui/react";
 
-import React from "react";
-import { FaGoogle } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import Link from "next/link";
 import { useForm, Controller } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
@@ -20,6 +20,7 @@ import toast from "react-hot-toast";
 const RegisterPage = () => {
   const router = useRouter();
   const { control, handleSubmit } = useForm();
+  const [isShowPassword, setIsShowPassword] = useState(false);
 
   const handleRegisterFunc = async (data) => {
     const { email, name, photo, password } = data;
@@ -75,6 +76,7 @@ const RegisterPage = () => {
           {/* NAME */}
           <Controller
             name="name"
+            defaultValue=""
             control={control}
             render={({ field }) => (
               <TextField isRequired>
@@ -93,6 +95,7 @@ const RegisterPage = () => {
           <Controller
             name="email"
             control={control}
+            defaultValue=""
             render={({ field }) => (
               <TextField
                 isRequired
@@ -118,6 +121,7 @@ const RegisterPage = () => {
           <Controller
             name="photo"
             control={control}
+            defaultValue=""
             render={({ field }) => (
               <TextField isRequired>
                 <Label>Photo URL</Label>
@@ -138,8 +142,10 @@ const RegisterPage = () => {
           <Controller
             name="password"
             control={control}
+            defaultValue=""
             render={({ field }) => (
               <TextField
+                className="relative"
                 isRequired
                 validate={(value) => {
                   if (value.length < 8) {
@@ -158,10 +164,16 @@ const RegisterPage = () => {
                 <Input
                   className="w-full"
                   {...field}
-                  type="password"
+                  type={`${isShowPassword ? "text" : "password"}`}
                   placeholder="Enter password"
                 />
                 <FieldError />
+                <span
+                  className="cursor-pointer absolute right-3 top-9"
+                  onClick={() => setIsShowPassword(!isShowPassword)}
+                >
+                  {isShowPassword ? <FaEye></FaEye> : <FaEyeSlash />}
+                </span>
               </TextField>
             )}
           />

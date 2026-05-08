@@ -1,6 +1,5 @@
 "use client";
-
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Form,
@@ -12,12 +11,13 @@ import {
 
 import Link from "next/link";
 import { useForm, Controller } from "react-hook-form";
-import { FaGoogle, FaGithub } from "react-icons/fa";
+import { FaGoogle, FaGithub, FaEye, FaEyeSlash } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 
 const LoginPage = () => {
   const { control, handleSubmit } = useForm();
+  const [isShowPassword, setIsShowPassword] = useState(false)
 
   const handleLoginFunc = async (data) => {
   const { email, password } = data;
@@ -86,6 +86,7 @@ const LoginPage = () => {
           {/* EMAIL */}
           <Controller
             name="email"
+            defaultValue=""
             control={control}
             render={({ field }) => (
               <TextField
@@ -100,7 +101,11 @@ const LoginPage = () => {
                 }}
               >
                 <Label>Email</Label>
-                <Input className="w-full" {...field} placeholder="Enter your email" />
+                <Input value={field.value}
+                  onChange={field.onChange}
+                  onBlur={field.onBlur}
+                  name={field.name}
+                  ref={field.ref} className="w-full"  placeholder="Enter your email" />
                 <FieldError />
               </TextField>
             )}
@@ -109,9 +114,11 @@ const LoginPage = () => {
           {/* PASSWORD */}
           <Controller
             name="password"
+            defaultValue=""
             control={control}
             render={({ field }) => (
               <TextField
+                className="relative"
                 isRequired
                 validate={(value) => {
                   if (value.length < 8) {
@@ -127,8 +134,20 @@ const LoginPage = () => {
                 }}
               >
                 <Label>Password</Label>
-                <Input className="w-full" {...field} type="password" placeholder="Enter password" />
+                <Input
+                 type={`${isShowPassword ? "text" : "password"}`}
+                  value={field.value}
+                  onChange={field.onChange}
+                  onBlur={field.onBlur}
+                  name={field.name}
+                  ref={field.ref}
+                className="w-full" placeholder="Enter password" />
                 <FieldError />
+                <span className="cursor-pointer absolute right-3 top-9" onClick={()=> setIsShowPassword(!isShowPassword)}>
+                  {
+                    isShowPassword ? <FaEye></FaEye> : <FaEyeSlash />
+                  }
+                </span>
               </TextField>
             )}
           />

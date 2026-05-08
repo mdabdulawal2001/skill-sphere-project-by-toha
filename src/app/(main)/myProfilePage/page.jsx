@@ -19,7 +19,7 @@ const MyProfilePage = () => {
         <h1 className="text-3xl md:text-4xl font-bold mb-8">👤 My Profile</h1>
 
         {/* PROFILE CARD */}
-        <div className="flex justify-between items-center bg-white shadow rounded-xl p-6">
+        <div className="flex justify-center md:justify-between items-center bg-white shadow rounded-xl p-6">
           {/* IMAGE */}
          <div className=" md:flex items-center gap-8">
            <div className="flex justify-center">

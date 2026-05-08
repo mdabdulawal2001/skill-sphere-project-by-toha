@@ -67,19 +67,18 @@ const AllCoursesPage = () => {
                 className="border rounded-xl p-4 shadow bg-white space-y-4"
               >
                 {/* IMAGE SKELETON */}
-                <div className="skeleton h-48 w-full rounded-xl"></div>
+                <div className="animate-pulse skeleton h-48 w-full rounded-xl"></div>
 
                 {/* TITLE */}
-                <div className="skeleton h-6 w-3/4"></div>
+                <div className="animate-pulse skeleton h-6 w-3/4"></div>
 
                 {/* DESCRIPTION */}
                 <div className="space-y-2">
-                  <div className="skeleton h-4 w-full"></div>
-                  <div className="skeleton h-4 w-5/6"></div>
+                  <div className="animate-pulse skeleton h-4 w-full"></div>
                 </div>
 
                 {/* BUTTON */}
-                <div className="skeleton h-10 w-full rounded-lg"></div>
+                <div className="animate-pulse skeleton h-10 w-full rounded-lg"></div>
               </div>
             ))}
           </div>

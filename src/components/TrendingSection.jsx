@@ -37,7 +37,7 @@ const TrendingSection = async () => {
 
               {/* LINK */}
               <a
-                href={`/courses/${course.id}`}
+                href={`/allCoursesPage/${course.id}`}
                 className="text-blue-500 text-sm mt-2 inline-block"
               >
                 View →
