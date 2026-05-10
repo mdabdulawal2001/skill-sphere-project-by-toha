@@ -1,11 +1,40 @@
 import Image from "next/image";
 import React from "react";
 
+export async function generateMetadata({ params }) {
+
+  const { id } = await params;
+
+  try {
+
+    const res = await fetch(
+      `https://skill-sphere-server-0c85.onrender.com/courses/${id}`
+    );
+
+    const course = await res.json();
+
+    return {
+      title: `${course.title.slice(0, 20)}... | SkillSphere`,
+      description: course.description,
+    };
+
+  } catch (error) {
+
+    return {
+      title: "Course Details | SkillSphere",
+      description: "Course details page",
+    };
+  }
+}
+
 const CourseDetailsPage = async ({ params }) => {
-  const { id } = await params; 
-  const res = await fetch("https://skill-sphere-server-0c85.onrender.com/courses", {
-    cache: "no-store",
-  });
+  const { id } = await params;
+  const res = await fetch(
+    "https://skill-sphere-server-0c85.onrender.com/courses",
+    {
+      cache: "no-store",
+    }
+  );
 
   const data = await res.json();
   const allCourses = data;

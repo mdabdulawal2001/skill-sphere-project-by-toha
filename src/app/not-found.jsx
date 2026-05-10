@@ -1,5 +1,11 @@
 import Link from "next/link";
 
+export const metadata = {
+  title: "Not Found | SkillSphere",
+  description: "Login to your account",
+};
+
+
 const NotFoundPage = () => {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center text-center px-4">
