@@ -64,7 +64,7 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="my-10 md:my-16 min-h-screen flex items-center justify-center px-4">
+    <div className="my-10 md:my-16 flex items-center justify-center px-4">
 
       <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
 
