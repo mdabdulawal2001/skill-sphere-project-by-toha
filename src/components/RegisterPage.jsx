@@ -62,7 +62,7 @@ const RegisterPage = () => {
       {/* CARD */}
       <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
         {/* TITLE */}
-        <h1 className="text-3xl font-bold text-center">Registration ✨</h1>
+        <h1 className="text-3xl font-bold text-center">Registration</h1>
 
         <p className="text-center text-gray-500 mt-2 mb-6">
           Create your SkillSphere account

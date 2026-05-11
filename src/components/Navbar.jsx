@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { useState } from "react";
 import { Avatar, Button } from "@heroui/react";
 import Link from "next/link";
 import { CgMenu } from "react-icons/cg";
@@ -13,7 +12,9 @@ import toast from "react-hot-toast";
 const Navbar = () => {
   const { data: session, isPending } = authClient.useSession();
 
-  const showLoader = isPending && !session; 
+  // loader only for initial auth checking
+  const showLoader = isPending && !session;
+
   const user = session?.user;
 
   const handleSignOut = async () => {
@@ -24,10 +25,12 @@ const Navbar = () => {
   // closing drawer after clicking sidebar link
   const closeDrawer = () => {
     const drawer = document.getElementById("my-drawer-1");
+
     if (drawer) {
       drawer.checked = false;
     }
   };
+
   return (
     <div className="bg-base-100 shadow-sm">
       <div className="container mx-auto navbar">
@@ -41,111 +44,251 @@ const Navbar = () => {
               height={60}
               src={logo}
               alt="skill logo"
-            ></Image>
-            <p className="text-2xl md:text-4xl">SkillSphere</p>
+            />
+
+            <p className="text-2xl md:text-4xl">
+              SkillSphere
+            </p>
           </div>
         </div>
+
         {/* navbar center */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-3 flex">
+
             <li className="py-2 rounded-md">
-              <NavLink href={"/"}>Home</NavLink>
+              <NavLink href={"/"}>
+                Home
+              </NavLink>
             </li>
+
             <li className="py-2 rounded-md">
-              <NavLink href={"/allCoursesPage"}>All Courses</NavLink>
+              <NavLink href={"/allCoursesPage"}>
+                All Courses
+              </NavLink>
             </li>
+
             <li className="py-2 rounded-md">
-              <NavLink href={"/myProfilePage"}>My Profile</NavLink>
+              <NavLink href={"/myProfilePage"}>
+                My Profile
+              </NavLink>
             </li>
+
           </ul>
         </div>
+
         {/* navbar end */}
         <div className="navbar-end">
-          {/* spinner while session loading */}
+
+          {/* loader */}
           {showLoader && (
             <div className="flex items-center justify-center mr-2">
               <div className="relative w-10 h-10">
+
                 {/* outer spinning ring */}
                 <div className="absolute inset-0 rounded-full border-4 border-t-blue-500 border-r-purple-500 border-b-pink-500 border-l-transparent animate-spin"></div>
 
-                {/* inner pulse circle */}
+                {/* inner pulse */}
                 <div className="absolute inset-2 rounded-full bg-blue-500 animate-pulse"></div>
+
               </div>
             </div>
           )}
 
-          {!showLoader && !user && (
-            <div className="flex gap-3">
-              <Link href={`/loginPage`}>
-                <button className="btn">Login</button>
-              </Link>
-              <Link href={`/registerPage`}>
-                <button className="btn">Register</button>
-              </Link>
-            </div>
-          )}
+          {/* main navbar content */}
+          {!showLoader && (
+            <div className="flex items-center gap-2">
 
-          {/* avatar if logged in */}
-          {!showLoader && user && (
-            <div className="flex gap-2">
-              <Avatar>
-                <Avatar.Image
-                  alt="John Doe"
-                  src={user?.image}
-                  referrerPolicy="no-referrer"
-                />
-                <Avatar.Fallback>{user?.name?.charAt(0)}</Avatar.Fallback>
-              </Avatar>
-              {/* logout btn */}
-              <div className="hidden md:block">
-                <Link href={`/loginPage`}>
-                  <Button onClick={handleSignOut} variant="danger">
-                    Logout
-                  </Button>
-                </Link>
-              </div>
+              {/*  DESKTOP */}
 
-              {/* drawer */}
-              <div className="drawer drawer-end md:hidden w-fit mr-2">
+              {/* desktop logged out */}
+              {!user && (
+                <div className="hidden md:flex gap-3">
+
+                  <Link href="/loginPage">
+                    <button className="btn">
+                      Login
+                    </button>
+                  </Link>
+
+                  <Link href="/registerPage">
+                    <button className="btn">
+                      Register
+                    </button>
+                  </Link>
+
+                </div>
+              )}
+
+              {/* desktop logged in */}
+              {user && (
+                <>
+                  {/* avatar */}
+                  <Avatar className="hidden md:flex">
+                    <Avatar.Image
+                      alt="User"
+                      src={user?.image}
+                      referrerPolicy="no-referrer"
+                    />
+
+                    <Avatar.Fallback>
+                      {user?.name?.charAt(0)}
+                    </Avatar.Fallback>
+                  </Avatar>
+
+                  {/* logout button desktop */}
+                  <div className="hidden md:block">
+                    <Button
+                      onClick={handleSignOut}
+                      variant="danger"
+                    >
+                      Logout
+                    </Button>
+                  </div>
+                </>
+              )}
+
+              {/* MOBILE DRAWER */}
+
+              <div className="drawer drawer-end md:hidden">
+
                 <input
                   id="my-drawer-1"
                   type="checkbox"
                   className="drawer-toggle"
                 />
-                <div className="drawer-content">
-                  {/* Page content here */}
-                  <label htmlFor="my-drawer-1" className="btn drawer-button">
-                    <CgMenu></CgMenu>
+
+                {/* drawer button */}
+                <div className="drawer-content flex items-center gap-2">
+
+                  {/* avatar for mobile */}
+                  {user && (
+                    <Avatar className="w-10 h-10">
+                      <Avatar.Image
+                        alt="User"
+                        src={user?.image}
+                        referrerPolicy="no-referrer"
+                      />
+
+                      <Avatar.Fallback>
+                        {user?.name?.charAt(0)}
+                      </Avatar.Fallback>
+                    </Avatar>
+                  )}
+
+                  {/* menu button */}
+                  <label
+                    htmlFor="my-drawer-1"
+                    className="btn drawer-button"
+                  >
+                    <CgMenu size={22} />
                   </label>
+
                 </div>
-                <div className="drawer-side">
+
+                {/* drawer sidebar */}
+                <div className="drawer-side z-50">
+
                   <label
                     htmlFor="my-drawer-1"
                     aria-label="close sidebar"
                     className="drawer-overlay"
                   ></label>
+
                   <ul className="menu bg-base-200 min-h-full w-80 p-4">
-                    {/* Sidebar content here */}
-                    <li onClick={closeDrawer} className="px-3 py-2 rounded-md">
-                      <NavLink href={"/"}>Home</NavLink>
+
+                    {/* user info */}
+                    {user && (
+                      <div className="flex flex-col items-center mb-6 mt-2">
+
+                        <Avatar className="w-16 h-16">
+                          <Avatar.Image
+                            alt="User"
+                            src={user?.image}
+                            referrerPolicy="no-referrer"
+                          />
+
+                          <Avatar.Fallback>
+                            {user?.name?.charAt(0)}
+                          </Avatar.Fallback>
+                        </Avatar>
+
+                        <p className="mt-3 font-semibold text-lg">
+                          {user?.name}
+                        </p>
+
+                      </div>
+                    )}
+
+                    {/* nav links */}
+                    <li
+                      onClick={closeDrawer}
+                      className="px-3 py-2 rounded-md"
+                    >
+                      <NavLink href={"/"}>
+                        Home
+                      </NavLink>
                     </li>
-                    <li onClick={closeDrawer} className="px-3 py-2 rounded-md">
-                      <NavLink href={"/allCoursesPage"}>All Courses</NavLink>
+
+                    <li
+                      onClick={closeDrawer}
+                      className="px-3 py-2 rounded-md"
+                    >
+                      <NavLink href={"/allCoursesPage"}>
+                        All Courses
+                      </NavLink>
                     </li>
-                    <li onClick={closeDrawer} className="px-3 py-2 rounded-md">
-                      <NavLink href={"/myProfilePage"}>My Profile</NavLink>
+
+                    <li
+                      onClick={closeDrawer}
+                      className="px-3 py-2 rounded-md"
+                    >
+                      <NavLink href={"/myProfilePage"}>
+                        My Profile
+                      </NavLink>
                     </li>
-                    <li className="mt-6">
-                      <Link href={`/loginPage`}>
+
+                    {/* logged in */}
+                    {user ? (
+                      <li className="mt-6">
                         <Button
-                          onClick={handleSignOut}
+                          onClick={() => {
+                            handleSignOut();
+                            closeDrawer();
+                          }}
                           variant="danger"
-                          className=""
+                          className="w-full"
                         >
                           Logout
                         </Button>
-                      </Link>
-                    </li>
+
+                      </li>
+                    ) : (
+                      /* logged out */
+                      <div className="mt-6 flex flex-col gap-3">
+                        <Link
+                          href="/loginPage"
+                          onClick={closeDrawer}
+                        >
+                          <Button className="w-full">
+                            Login
+                          </Button>
+                        </Link>
+
+                        <Link
+                          href="/registerPage"
+                          onClick={closeDrawer}
+                        >
+                          <Button
+                            className="w-full"
+                            variant="solid"
+                          >
+                            Register
+                          </Button>
+                        </Link>
+                      </div>
+                    )}
+
                   </ul>
                 </div>
               </div>
