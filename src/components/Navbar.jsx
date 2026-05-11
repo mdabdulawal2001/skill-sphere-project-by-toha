@@ -40,8 +40,8 @@ const Navbar = () => {
           <div className="flex justify-center items-center gap-3">
             <Image
               className="hidden md:flex"
-              width={60}
-              height={60}
+              width={50}
+              height={50}
               src={logo}
               alt="skill logo"
             />
