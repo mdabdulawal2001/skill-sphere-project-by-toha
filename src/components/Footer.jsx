@@ -2,10 +2,13 @@ import Image from "next/image";
 import React from "react";
 import { FaFacebook, FaLinkedin, FaYoutube } from "react-icons/fa";
 import logo from "@/assets/logo.png";
+import gradient from "../assets/gradient-picture2.jpg"
 
 const Footer = () => {
   return (
-    <div className="bg-base-300">
+    <div style={{
+        backgroundImage: `url(${gradient.src})`,
+      }} className="bg-cover">
       <footer className="w-11/12 mx-auto footer sm:footer-horizontal text-base-content p-10">
         <nav>
           <div>
@@ -17,7 +20,7 @@ const Footer = () => {
               alt="skill logo"
             ></Image>
           </div>
-          <h1 className="text-2xl md:text-4xl">SkillSphere</h1>
+          <h1 className="text-2xl md:text-4xl text-[#052efb]/80 font-bold">SkillSphere</h1>
         </nav>
         <nav>
           <h6 className="footer-title">Company</h6>

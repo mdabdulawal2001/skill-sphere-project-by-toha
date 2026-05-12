@@ -8,6 +8,7 @@ import NavLink from "./NavLink";
 import logo from "@/assets/logo.png";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
+import gradient from "../assets/gradient-picture2.jpg"
 
 const Navbar = () => {
   const { data: session, isPending } = authClient.useSession();
@@ -30,9 +31,11 @@ const Navbar = () => {
       drawer.checked = false;
     }
   };
-
+// bg-[#052efb]/10
   return (
-    <div className="bg-base-100 shadow-sm">
+    <div style={{
+    backgroundImage: `url(${gradient.src})`,
+  }} className="bg-cover shadow-sm">
       <div className="container mx-auto navbar">
         {/* navbar start */}
         <div className="navbar-start">
@@ -46,7 +49,7 @@ const Navbar = () => {
               alt="skill logo"
             />
 
-            <p className="text-2xl md:text-4xl">
+            <p className="text-3xl md:text-4xl text-[#052efb]/80 font-bold">
               SkillSphere
             </p>
           </div>
@@ -106,13 +109,13 @@ const Navbar = () => {
                 <div className="hidden md:flex gap-3">
 
                   <Link href="/loginPage">
-                    <button className="btn">
+                    <button className="btn text-white/90 bg-[#052efb]/80 hover:bg-[#052efb]/70 border-none">
                       Login
                     </button>
                   </Link>
 
                   <Link href="/registerPage">
-                    <button className="btn">
+                    <button className="btn text-white/90 bg-[#052efb]/80 hover:bg-[#052efb]/70 border-none">
                       Register
                     </button>
                   </Link>
@@ -141,6 +144,7 @@ const Navbar = () => {
                     <Button
                       onClick={handleSignOut}
                       variant="danger"
+                      className="bg-[#052efb]/90 hover:bg-[#052efb]/70"
                     >
                       Logout
                     </Button>
@@ -179,9 +183,9 @@ const Navbar = () => {
                   {/* menu button */}
                   <label
                     htmlFor="my-drawer-1"
-                    className="btn drawer-button"
+                    className="btn btn-info drawer-button bg-[#052efb]/50 border-none"
                   >
-                    <CgMenu size={22} />
+                    <CgMenu size={22} className="text-[#070707]" />
                   </label>
 
                 </div>
@@ -270,7 +274,7 @@ const Navbar = () => {
                           href="/loginPage"
                           onClick={closeDrawer}
                         >
-                          <Button className="w-full">
+                          <Button className="bg-[#052efb]/90 hover:bg-[#052efb]/70 w-full">
                             Login
                           </Button>
                         </Link>
@@ -280,7 +284,7 @@ const Navbar = () => {
                           onClick={closeDrawer}
                         >
                           <Button
-                            className="w-full"
+                            className="w-full text-white bg-[#4663f0]"
                             variant="solid"
                           >
                             Register
