@@ -13,14 +13,14 @@ const Footer = () => {
         <nav>
           <div>
             <Image
-              className="hidden md:flex"
+              className="flex"
               width={60}
               height={60}
               src={logo}
               alt="skill logo"
             ></Image>
           </div>
-          <h1 className="text-2xl md:text-4xl text-[#052efb]/80 font-bold">SkillSphere</h1>
+          <h1 className="text-3xl md:text-4xl text-[#052efb]/80 font-bold">SkillSphere</h1>
         </nav>
         <nav>
           <h6 className="footer-title">Company</h6>
