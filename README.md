@@ -23,15 +23,11 @@ This project demonstrates practical implementation of modern frontend and full-s
 # 📸 Screenshots
 
 <p align="center">
-  <img width="1200" alt="Home Page Screenshot" src="c:\Users\LENOVO\Desktop\Screenshot 2026-05-14 012017.png" />
+  <img width="1188" height="593" alt="Screenshot 2026-05-14 012017" src="https://github.com/user-attachments/assets/a0a8ec22-2a9f-4b93-b51f-662e5819c981" />
 </p>
 
 <p align="center">
-  <img width="1200" alt="Courses Page Screenshot" src="YOUR_SCREENSHOT_LINK" />
-</p>
-
-<p align="center">
-  <img width="1200" alt="Profile Page Screenshot" src="YOUR_SCREENSHOT_LINK" />
+  <img width="1052" height="417" alt="Screenshot 2026-05-14 011817" src="https://github.com/user-attachments/assets/e9a10b51-ed22-4419-b4e2-8d44dbca931d" />
 </p>
 
 ---
