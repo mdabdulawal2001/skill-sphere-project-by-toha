@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import PageMotion from "./Motion/PageMotion";
+import { motion } from "framer-motion";
 
 const AllCoursesPage = () => {
   const [courses, setCourses] = useState([]);
@@ -26,111 +28,152 @@ const AllCoursesPage = () => {
   );
 
   return (
-    <div>
-      <div className="max-w-7xl mx-auto px-4 py-10 my-6 md:my-10">
-        {/* HEADER */}
-        <div className="flex flex-col gap-6 justify-center items-center mb-6">
-          <h1 className="text-3xl md:text-4xl font-bold">📚 All Courses</h1>
+      <div>
+        <div className="max-w-7xl mx-auto px-4 py-10 my-6 md:my-10">
+          {/* HEADER */}
+          <div className="flex flex-col gap-6 justify-center items-center mb-6">
+            <h1 className="text-3xl md:text-4xl font-bold">All Courses</h1>
 
-          {/* SEARCH */}
-          <div className="flex gap-2 mb-6 w-10/12 md:w-3/12">
-            <input
-              type="text"
-              placeholder="Search by title..."
-              className="outline-none input input-bordered w-full"
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
+            {/* SEARCH */}
+            <div className="flex gap-2 mb-6 w-10/12 md:w-3/12">
+              <input
+                type="text"
+                placeholder="Search by title..."
+                className="outline-none
+input
+input-bordered
+w-full
+focus:border-[#047bfb]
+focus:ring-2
+focus:ring-blue-200
+transition-all"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    setSearch(searchText);
+                  }
+                }}
+              />
+              <button
+                onClick={() => {
                   setSearch(searchText);
-                }
-              }}
-            />
-            <button
-              onClick={() => {
-                setSearch(searchText);
-                setSearched(true);
-              }}
-              className="btn btn-success"
-            >
-              Search
-            </button>
-          </div>
-        </div>
-
-        {/* loading */}
-        {loading && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <div
-                key={item}
-                className="border rounded-xl p-4 shadow bg-white space-y-4"
+                  setSearched(true);
+                }}
+                className="btn btn-success bg-linear-to-r from-[#035ec4] to-[#047bfb]
+hover:shadow-lg
+hover:shadow-blue-500/30
+transition-all
+duration-300
+hover:scale-105 text-white"
               >
-                {/* IMAGE SKELETON */}
-                <div className="animate-pulse skeleton h-48 w-full rounded-xl"></div>
+                Search
+              </button>
+            </div>
+          </div>
 
-                {/* TITLE */}
-                <div className="animate-pulse skeleton h-6 w-3/4"></div>
+          {/* loading */}
+          {loading && (
+            <PageMotion>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[1, 2, 3, 4, 5, 6].map((item) => (
+                <div
+                  key={item}
+                  className="border rounded-xl p-4 shadow bg-white space-y-4"
+                >
+                  {/* IMAGE SKELETON */}
+                  <div className="animate-pulse skeleton h-48 w-full rounded-xl"></div>
 
-                {/* DESCRIPTION */}
-                <div className="space-y-2">
-                  <div className="animate-pulse skeleton h-4 w-full"></div>
+                  {/* TITLE */}
+                  <div className="animate-pulse skeleton h-6 w-3/4"></div>
+
+                  {/* DESCRIPTION */}
+                  <div className="space-y-2">
+                    <div className="animate-pulse skeleton h-4 w-full"></div>
+                  </div>
+
+                  {/* BUTTON */}
+                  <div className="animate-pulse skeleton h-10 w-full rounded-lg"></div>
+                </div>
+              ))}
+            </div>
+            </PageMotion>
+          )}
+
+          {/* search item not found */}
+
+          {!loading && searched && filteredCourses.length === 0 && (
+            <p className="text-center mt-10 text-gray-500">No courses found</p>
+          )}
+
+          {/* GRID */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredCourses.map((course) => (
+              <div
+                key={course.id}
+                className="hover:scale-105 
+               group
+  my-3
+  overflow-hidden
+  rounded-3xl
+  border
+  border-blue-100
+  bg-white
+  shadow-sm
+  hover:shadow-2xl
+  hover:shadow-blue-500/10
+  transition-all
+  duration-300
+              "
+              >
+                {/* IMAGE */}
+                <div className="relative w-full h-48">
+                  <Image
+                    src={course.image}
+                    alt={course.title}
+                    fill
+                    className="
+          object-cover
+          group-hover:scale-105
+          transition-transform
+          duration-500"
+                  />
                 </div>
 
-                {/* BUTTON */}
-                <div className="animate-pulse skeleton h-10 w-full rounded-lg"></div>
+                {/* CONTENT */}
+                <div className="p-4">
+                  <h2 className="text-lg font-semibold">{course.title}</h2>
+
+                  <p className="text-sm text-gray-500 mt-1">
+                    {course.description.slice(0, 100)}...
+                  </p>
+
+                  <Link
+                    href={`/allCoursesPage/${course.id}`}
+                    className="inline-block mt-4 px-4 py-2 bg-blue-500 rounded bg-linear-to-r
+          from-[#035ec4]
+          to-[#047bfb]
+          text-white
+          font-semibold
+          hover:scale-105
+          hover:shadow-lg
+          hover:shadow-blue-500/30
+          transition-all
+          duration-300"
+                  >
+                    View Details
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
-        )}
-
-        {/* search item not found */}
-
-        {!loading && searched && filteredCourses.length === 0 && (
-          <p className="text-center mt-10 text-gray-500">No courses found</p>
-        )}
-
-        {/* GRID */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCourses.map((course) => (
-            <div
-              key={course.id}
-              className="my-3 border rounded-xl shadow hover:shadow-xl hover:scale-105 transition overflow-hidden bg-white"
-            >
-              {/* IMAGE */}
-              <div className="relative w-full h-48">
-                <Image
-                  src={course.image}
-                  alt={course.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* CONTENT */}
-              <div className="p-4">
-                <h2 className="text-lg font-semibold">{course.title}</h2>
-
-                <p className="text-sm text-gray-500 mt-1">
-                  {course.description.slice(0, 100)}...
-                </p>
-
-                <Link
-                  href={`/allCoursesPage/${course.id}`}
-                  className="mt-4 inline-block w-full text-center bg-blue-500 text-white py-2 rounded"
-                >
-                  View Details
-                </Link>
-              </div>
-            </div>
-          ))}
         </div>
       </div>
-    </div>
   );
 };
 
 export default AllCoursesPage;
+
 
 // import React, { useEffect, useState } from "react";
 // import Image from "next/image";
@@ -201,9 +244,9 @@ export default AllCoursesPage;
 
 //                 {/* DETAILS */}
 //                 <div className="mt-3 text-sm space-y-1">
-//                   <p>👨‍🏫 {course.instructor}</p>
-//                   <p>⏱ {course.duration}</p>
-//                   <p>⭐ {course.rating}</p>
+//                   <p> {course.instructor}</p>
+//                   <p> {course.duration}</p>
+//                   <p> {course.rating}</p>
 //                 </div>
 
 //                 {/* BUTTON */}

@@ -1,17 +1,30 @@
 import React from "react";
-
+import MotionLeft from "./Motion/MotionLeft";
+import MotionRight from "./Motion/MotionRight";
 const LearningTips = () => {
   return (
     <div className="mb-8">
       <div className="max-w-7xl mx-auto mt-16 px-4">
         <h2 className="text-2xl md:text-3xl font-bold mb-6">
-          📌 Learning Tips
+           Learning Tips
         </h2>
 
         <div className="grid md:grid-cols-2 gap-6">
           {/* Study Techniques */}
-          <div className="p-6 border rounded-xl shadow hover:shadow-md transition">
-            <h3 className="text-xl font-semibold mb-3">🧠 Study Techniques</h3>
+          <MotionLeft>
+            <div className="group
+          p-8
+          bg-white
+          border
+          border-blue-100
+          rounded-3xl
+          shadow-sm
+          hover:shadow-2xl
+          hover:shadow-blue-500/10
+          hover:-translate-y-2
+          transition-all
+          duration-500">
+            <h3 className="text-xl font-semibold mb-3"> Study Techniques</h3>
 
             <ul className="list-disc pl-5 space-y-2 text-gray-600">
               <li>Active recall practice</li>
@@ -20,11 +33,24 @@ const LearningTips = () => {
               <li>Teach what you learn</li>
             </ul>
           </div>
+          </MotionLeft>
 
           {/* Time Management */}
-          <div className="p-6 border rounded-xl shadow hover:shadow-md transition">
+          <MotionRight>
+            <div className=" group
+          p-8
+          bg-white
+          border
+          border-blue-100
+          rounded-3xl
+          shadow-sm
+          hover:shadow-2xl
+          hover:shadow-cyan-500/10
+          hover:-translate-y-2
+          transition-all
+          duration-500">
             <h3 className="text-xl font-semibold mb-3">
-              ⏰ Time Management Tips
+              Time Management Tips
             </h3>
 
             <ul className="list-disc pl-5 space-y-2 text-gray-600">
@@ -34,6 +60,7 @@ const LearningTips = () => {
               <li>Avoid multitasking</li>
             </ul>
           </div>
+          </MotionRight>
         </div>
       </div>
     </div>

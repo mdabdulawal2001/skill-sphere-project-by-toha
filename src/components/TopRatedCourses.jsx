@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { FcRating } from "react-icons/fc";
-import MotionCard from "./MotionCard";
+import MotionCard from "./Motion/MotionCard";
 
 const TopRatedCourses = async () => {
   const res = await fetch(

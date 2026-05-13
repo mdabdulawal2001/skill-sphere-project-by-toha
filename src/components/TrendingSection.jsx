@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import MotionCard from "./MotionCard";
+import MotionCard from "./Motion/MotionCard";
 
 const TrendingSection = async () => {
   const res = await fetch("https://skill-sphere-server-0c85.onrender.com/courses", {

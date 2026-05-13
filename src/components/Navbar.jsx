@@ -36,7 +36,7 @@ const Navbar = () => {
     <div style={{
     backgroundImage: `url(${gradient.src})`,
   }} className="bg-cover shadow-sm">
-      <div className="container mx-auto navbar">
+      <div className="w-11/12 container mx-auto navbar">
         {/* navbar start */}
         <div className="navbar-start">
           {/* logo and name */}
@@ -144,7 +144,7 @@ const Navbar = () => {
                     <Button
                       onClick={handleSignOut}
                       variant="danger"
-                      className="bg-[#052efb]/90 hover:bg-[#052efb]/70"
+                      className="pt-0.5 bg-[#052efb]/90 hover:bg-[#052efb]/70"
                     >
                       Logout
                     </Button>
