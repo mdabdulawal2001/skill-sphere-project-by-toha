@@ -139,6 +139,7 @@ const RegisterPage = () => {
               </TextField>
             )}
           />
+
           {/* PASSWORD */}
           <Controller
             name="password"
