@@ -23,7 +23,7 @@ This project demonstrates practical implementation of modern frontend and full-s
 # 📸 Screenshots
 
 <p align="center">
-  <img width="1200" alt="Home Page Screenshot" src="YOUR_SCREENSHOT_LINK" />
+  <img width="1200" alt="Home Page Screenshot" src="c:\Users\LENOVO\Desktop\Screenshot 2026-05-14 012017.png" />
 </p>
 
 <p align="center">

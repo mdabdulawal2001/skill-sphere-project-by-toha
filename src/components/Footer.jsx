@@ -9,7 +9,7 @@ const Footer = () => {
     <div style={{
         backgroundImage: `url(${gradient.src})`,
       }} className="bg-cover">
-      <footer className="w-11/12 mx-auto footer sm:footer-horizontal text-base-content p-10">
+      <footer className="w-11/12 max-w-7xl mx-auto footer sm:footer-horizontal text-base-content p-10">
         <nav>
           <div>
             <Image

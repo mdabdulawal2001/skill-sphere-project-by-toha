@@ -38,7 +38,8 @@ const Navbar = () => {
   return (
     <div style={{
     backgroundImage: `url(${gradient.src})`,
-  }} className="bg-cover shadow-sm">
+  }} className="bg-cover shadow-sm sticky top-0 z-50
+                backdrop-blur-md transition-all duration-300">
       <div className="w-11/12 max-w-7xl container mx-auto navbar">
         {/* navbar start */}
         <div className="navbar-start">

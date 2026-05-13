@@ -29,7 +29,7 @@ const AllCoursesPage = () => {
 
   return (
       <div>
-        <div className="max-w-7xl mx-auto px-4 py-10 my-6 md:my-10">
+        <div className="max-w-7xl mx-auto px-4 py-10 my-6">
           {/* HEADER */}
           <div className="flex flex-col gap-6 justify-center items-center mb-6">
             <h1 className="text-3xl md:text-4xl font-bold">All Courses</h1>

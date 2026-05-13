@@ -45,9 +45,9 @@ const CourseDetailsPage = async ({ params }) => {
 
   return (
     <MotionCard>
-      <div className="w-11/12 mx-auto my-10 md:my-24">
+      <div className="w-11/12 mx-auto my-10 md:my-20">
         <div
-          className="px-3 py-6 md:px-10 max-w-6xl mx-auto md:py-15 bg-white/70
+          className="px-3 py-6 md:px-10 max-w-7xl mx-auto md:py-15 bg-white/70
             backdrop-blur-md
             rounded-3xl
             border
@@ -122,9 +122,9 @@ const CourseDetailsPage = async ({ params }) => {
 
           {/* CURRICULUM SECTION */}
           <div className="mt-12">
-            <h2 className="text-2xl font-bold mb-4">Course Curriculum</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center md:text-left">Course Curriculum</h2>
 
-            <ul className="space-y-3">
+            <ul className="space-y-3 text-center md:text-left">
               <li className="border
                   border-blue-100
                   p-4
