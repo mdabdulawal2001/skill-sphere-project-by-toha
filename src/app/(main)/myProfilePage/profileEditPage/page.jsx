@@ -4,7 +4,9 @@ import { Input, Label, TextField } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-
+import MotionLeft from "@/components/Motion/MotionLeft";
+import MotionRight from "@/components/Motion/MotionRight";
+import MotionCard from "@/components/Motion/MotionCard";
 
 const ProfileEditPage = () => {
   const { register, handleSubmit } = useForm();
@@ -27,7 +29,8 @@ const ProfileEditPage = () => {
   };
 
   return (
-    <div>
+    <MotionCard>
+        <div>
       <div className="w-full min-h-[calc(100vh-200px)] flex items-center justify-center px-4 py-10">
         <div
           className="
@@ -109,6 +112,7 @@ const ProfileEditPage = () => {
         </div>
       </div>
     </div>
+    </MotionCard>
   );
 };
 

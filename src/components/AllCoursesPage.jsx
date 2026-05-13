@@ -93,7 +93,7 @@ hover:scale-105 text-white"
                   </div>
 
                   {/* BUTTON */}
-                  <div className="animate-pulse skeleton h-10 w-full rounded-lg"></div>
+                  <div className="animate-pulse skeleton h-10 w-4/12 rounded-lg"></div>
                 </div>
               ))}
             </div>

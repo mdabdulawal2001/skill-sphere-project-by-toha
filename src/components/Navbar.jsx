@@ -160,7 +160,6 @@ const Navbar = () => {
               {/* MOBILE DRAWER */}
 
               <div className="drawer drawer-end md:hidden">
-
                 <input
                   id="my-drawer-1"
                   type="checkbox"

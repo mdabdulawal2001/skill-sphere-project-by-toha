@@ -14,6 +14,7 @@ import { useForm, Controller } from "react-hook-form";
 import { FaGoogle, FaGithub, FaEye, FaEyeSlash } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
+import MotionScale from "./Motion/MotionScale";
 
 const LoginPage = () => {
   const { control, handleSubmit } = useForm();
@@ -64,7 +65,8 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="my-10 md:my-16 flex items-center justify-center px-4">
+    <MotionScale>
+      <div className="my-10 md:my-16 flex items-center justify-center px-4">
 
       <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
 
@@ -196,6 +198,7 @@ const LoginPage = () => {
 
       </div>
     </div>
+    </MotionScale>
   );
 };
 

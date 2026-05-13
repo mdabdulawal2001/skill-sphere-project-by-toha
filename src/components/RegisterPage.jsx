@@ -16,6 +16,7 @@ import { useForm, Controller } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import PageMotion from "./Motion/PageMotion";
 
 const RegisterPage = () => {
   const router = useRouter();
@@ -58,7 +59,8 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="my-10 md:my-16 flex items-center justify-center px-4">
+    <PageMotion>
+      <div className="my-10 md:my-16 flex items-center justify-center px-4">
       {/* CARD */}
       <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
         {/* TITLE */}
@@ -209,6 +211,7 @@ const RegisterPage = () => {
         </p>
       </div>
     </div>
+    </PageMotion>
   );
 };
 
