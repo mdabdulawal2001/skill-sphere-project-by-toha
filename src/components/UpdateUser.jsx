@@ -3,25 +3,59 @@ import { authClient } from "@/lib/auth-client";
 import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
 import { useForm } from "react-hook-form";
 import { BiEdit } from "react-icons/bi";
+import toast from "react-hot-toast";
 
 const UpdateUser = () => {
   const { register, handleSubmit } = useForm();
 
-  const handleUpdate = async (data) => {
-    const { name, image } = data;
-    console.log(data);
+ const handleUpdate = async (data) => {
+  const { name, image } = data;
 
+  try {
     await authClient.updateUser({
-      name: name,
-      image: image,
+      name,
+      image,
     });
-  };
+
+    toast.success("Profile updated successfully");
+  } catch (error) {
+    console.log(error);
+
+    toast.error("Failed to update profile");
+  }
+};
 
   return (
     <div className="mt-4">
       <Modal>
-        <Button variant="secondary">Update Profile</Button>
-
+        <Button
+          className="
+            group
+            w-12.5
+            h-12.5
+            rounded-xl
+            bg-transparent
+            p-0
+            min-w-0
+            flex
+            items-center
+            justify-center
+            hover:bg-blue-50
+            transition-all
+            duration-300"
+        >
+          <BiEdit
+            className="
+            w-10
+            h-10
+            text-gray-600
+            transition-all
+            duration-300
+            group-hover:text-[#047bfb]
+            group-hover:scale-110
+            group-hover:drop-shadow-[0_0_10px_rgba(4,123,251,0.5)]"
+          />
+        </Button>
         <Modal.Backdrop>
           <Modal.Container placement="auto">
             <Modal.Dialog className="sm:max-w-md">
@@ -65,11 +99,11 @@ const UpdateUser = () => {
                     {/* SUBMIT BUTTON */}
 
                     <Modal.Footer>
-                      <Button type="submit" className="mt-2">
+                      <Button slot="close" type="submit" className="mt-2 pt-1">
                         Update
                       </Button>
                       <Button
-                        className="mt-2 py-4.75"
+                        className="mt-2 pt-4 py-3"
                         slot="close"
                         variant="secondary"
                       >

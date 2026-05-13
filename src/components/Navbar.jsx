@@ -9,9 +9,11 @@ import logo from "@/assets/logo.png";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import gradient from "../assets/gradient-picture2.jpg"
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const { data: session, isPending } = authClient.useSession();
+  const router = useRouter();
 
   // loader only for initial auth checking
   const showLoader = isPending && !session;
@@ -21,6 +23,7 @@ const Navbar = () => {
   const handleSignOut = async () => {
     await authClient.signOut();
     toast.success("Logout Successful");
+    router.push('/')
   };
 
   // closing drawer after clicking sidebar link
@@ -36,7 +39,7 @@ const Navbar = () => {
     <div style={{
     backgroundImage: `url(${gradient.src})`,
   }} className="bg-cover shadow-sm">
-      <div className="w-11/12 container mx-auto navbar">
+      <div className="w-11/12 max-w-7xl container mx-auto navbar">
         {/* navbar start */}
         <div className="navbar-start">
           {/* logo and name */}
@@ -135,7 +138,9 @@ const Navbar = () => {
                     />
 
                     <Avatar.Fallback>
-                      {user?.name?.charAt(0)}
+                      {<span className="font-bold text-[20px]">
+                        {user?.name?.charAt(0)}
+                        </span>}
                     </Avatar.Fallback>
                   </Avatar>
 
@@ -175,7 +180,9 @@ const Navbar = () => {
                       />
 
                       <Avatar.Fallback>
+                         {<span className="font-bold text-[20px]">
                         {user?.name?.charAt(0)}
+                        </span>}
                       </Avatar.Fallback>
                     </Avatar>
                   )}
@@ -213,7 +220,9 @@ const Navbar = () => {
                           />
 
                           <Avatar.Fallback>
-                            {user?.name?.charAt(0)}
+                             {<span className="font-bold text-[20px]">
+                              {user?.name?.charAt(0)}
+                              </span>}
                           </Avatar.Fallback>
                         </Avatar>
 
@@ -261,7 +270,7 @@ const Navbar = () => {
                             closeDrawer();
                           }}
                           variant="danger"
-                          className="w-full"
+                          className="w-full pt-2"
                         >
                           Logout
                         </Button>

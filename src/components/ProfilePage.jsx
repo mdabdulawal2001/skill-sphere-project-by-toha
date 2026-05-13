@@ -25,23 +25,25 @@ const MyProfilePage = () => {
            <div className="flex justify-center">
             <Avatar className="w-20 h-20">
                     <Avatar.Image alt="John Doe" src={user?.image} referrerPolicy="no-referrer" />
-                    <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+                    <Avatar.Fallback>{
+                      <span className="font-bold text-3xl">{user?.name.charAt(0)}</span>
+                      }</Avatar.Fallback>
                   </Avatar>
           </div>
 
           {/* INFO */}
           <div className="mt-6 md:mt-0 flex-1 flex flex-col items-center md:flex-none md:items-start">
             <h2 className="text-2xl font-semibold">{user?.name}</h2>
-            <p className="text-gray-500 mt-1">{user?.email}</p>
+            <p className="text-gray-500 mt-1 text-xl">{user?.email}</p>
 
             {/* BUTTON */}
-              <UpdateUser></UpdateUser>
+            <Link href={`/myProfilePage/profileEditPage`} className="mt-4 pt-1">
+              <button className="btn bg-[#281af8ca] text-white">Update</button>
+            </Link>
           </div>
          </div>
             <div className="hidden md:block">
-              <span>
-                <BiEdit size={30} className="text-gray-600 hover:text-blue-500 transition duration-300 cursor-pointer"></BiEdit>
-              </span>
+              <UpdateUser></UpdateUser>
             </div>
         </div>
 
